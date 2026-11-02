@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Parqueo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="main-container">
+    <header class="brand-header">
+      <h1 class="brand-title">Login Parqueo</h1>
+      <p class="brand-subtitle">Inicia sesión o crea una cuenta</p>
+    </header>
+
+    <section class="auth-card">
+      <!-- Pestañas: Iniciar Sesión y Registrarse -->
+      <div class="tabs-container">
+        <button id="tabLogin" type="button" class="tab-btn active">
+          Iniciar Sesión
+        </button>
+        <button id="tabRegistro" type="button" class="tab-btn">
+          Registrarse
+        </button>
+      </div>
+
+      <!-- Alerta de éxito o error -->
+      <div id="alertaBox" class="alert-box hidden"></div>
+
+      <!-- Pestaña 1: Iniciar Sesión -->
+      <div id="vistaLogin" class="view-section">
+        <form id="formLogin" class="auth-form">
+          <div class="form-group">
+            <label for="loginCorreo">Correo</label>
+            <input
+              type="email"
+              id="loginCorreo"
+              required
+              placeholder="correo@ejemplo.com"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Contraseña</label>
+            <input
+              type="password"
+              id="loginPassword"
+              required
+              placeholder="••••••••"
+              class="form-input"
+            />
+          </div>
+
+          <button type="submit" id="btnSubmitLogin" class="btn-primary">
+            Iniciar Sesión
+          </button>
+        </form>
+      </div>
+
+      <!-- Pestaña 2: Registrarse (Solo los 5 campos requeridos) -->
+      <div id="vistaRegistro" class="view-section hidden">
+        <form id="formRegistro" class="auth-form">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="regNombre">Nombre</label>
+              <input
+                type="text"
+                id="regNombre"
+                required
+                placeholder="Juan"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="regApellido">Apellido</label>
+              <input
+                type="text"
+                id="regApellido"
+                required
+                placeholder="Pérez"
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regUsuario">Usuario</label>
+            <input
+              type="text"
+              id="regUsuario"
+              required
+              placeholder="jperez"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="regCorreo">Correo</label>
+            <input
+              type="email"
+              id="regCorreo"
+              required
+              placeholder="juan@correo.com"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">Contraseña</label>
+            <input
+              type="password"
+              id="regPassword"
+              required
+              placeholder="••••••••"
+              class="form-input"
+            />
+          </div>
+
+          <button type="submit" id="btnSubmitRegistro" class="btn-primary">
+            Registrarse
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
