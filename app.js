@@ -68,6 +68,14 @@ formLogin.addEventListener('submit', async (e) => {
       return;
     }
 
+    if (datos.token) {
+      localStorage.setItem('token', datos.token);
+      localStorage.setItem('umes_token', datos.token);
+    }
+    if (datos.usuario) {
+      localStorage.setItem('usuario', JSON.stringify(datos.usuario));
+    }
+
     mostrarAlerta(
       `${datos.mensaje} — Bienvenido ${datos.usuario.nombre} (Rol: ${datos.usuario.rol})`,
       'exito'
