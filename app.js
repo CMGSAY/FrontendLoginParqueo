@@ -1,5 +1,9 @@
 const API_URL = 'https://apilogin-qh0o.onrender.com';
 const API_KEY = 'LoginParqueo_2026_JVC_KEY';
+const PARQUEO_APP_URL =
+  window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000'
+    : 'https://parqueo-fronted.vercel.app';
 
 const tabLogin = document.getElementById('tabLogin');
 const tabRegistro = document.getElementById('tabRegistro');
@@ -76,11 +80,37 @@ formLogin.addEventListener('submit', async (e) => {
       localStorage.setItem('usuario', JSON.stringify(datos.usuario));
     }
 
+    // Sincronizar usuario en parqueos-api antes de redirigir (keepalive evita que se cancele al cambiar de página)
+    await Promise.race([
+      fetch('https://parqueos-api.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: correo, password }),
+        keepalive: true
+      }).catch(() => null),
+      new Promise((resolve) => setTimeout(resolve, 2000))
+    ]);
+
     mostrarAlerta(
-      `${datos.mensaje} — Bienvenido ${datos.usuario.nombre} (Rol: ${datos.usuario.rol})`,
+      `${datos.mensaje} — Bienvenido ${datos.usuario.nombre} (Rol: ${datos.usuario.rol}). Entrando al parqueo...`,
       'exito'
     );
     formLogin.reset();
+
+    const token = datos.token || datos.access_token || '';
+    const u = datos.usuario || {};
+    const nombreCompleto = `${u.nombre || ''} ${u.apellido || ''}`.trim() || 'Usuario';
+    const params = new URLSearchParams({
+      token,
+      id: String(u.id || 1),
+      correo: u.correo || correo,
+      nombre: nombreCompleto,
+      rol: String(u.rol || 1)
+    });
+
+    setTimeout(() => {
+      window.location.href = `${PARQUEO_APP_URL}/login?${params.toString()}`;
+    }, 800);
   } catch (error) {
     mostrarAlerta('Error de conexión con la API', 'error');
   } finally {
