@@ -9,12 +9,19 @@
 <body>
 
   <main class="main-container">
-    <header class="brand-header">
-      <h1 class="brand-title">Login Parqueo</h1>
-      <p class="brand-subtitle">Inicia sesión o crea una cuenta</p>
-    </header>
+    <!-- Panel Izquierdo: Imagen de Parqueo (controlada desde styles.css) -->
+    <aside class="parking-banner">
+      <h2 class="banner-title">Gestión de Parqueos</h2>
+    </aside>
 
+    <!-- Panel Derecho: Login y Registro -->
     <section class="auth-card">
+      <header class="brand-header">
+        <span class="brand-badge">P</span>
+        <h1 class="brand-title">Login Parqueo</h1>
+        <p class="brand-subtitle">Inicia sesión o crea una cuenta</p>
+      </header>
+
       <!-- Pestañas: Iniciar Sesión y Registrarse -->
       <div class="tabs-container">
         <button id="tabLogin" type="button" class="tab-btn active">
@@ -59,7 +66,7 @@
         </form>
       </div>
 
-      <!-- Pestaña 2: Registrarse (Solo los 5 campos requeridos) -->
+      <!-- Pestaña 2: Registrarse -->
       <div id="vistaRegistro" class="view-section hidden">
         <form id="formRegistro" class="auth-form">
           <div class="form-row-2">
